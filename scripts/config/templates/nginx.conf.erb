@@ -113,6 +113,7 @@ http {
       # can reuse variable set above
       proxy_pass $<%= hash['name'] %>;
       proxy_ssl_server_name on;
+      proxy_set_header X-Proxy-Auth "<%= ENV['PROXY_AUTH_TOKEN'] %>";
       <% %w(http https).each do |scheme| %>
       proxy_redirect <%= hash["redirect_#{scheme}"] %> <%= location %>;
       <% end %>
